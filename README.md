@@ -12,4 +12,4 @@ This repo was started on 29 December 2020, so it is still a work in progress. As
 ## Dynamic Programming?
 Though recursion is a key component in dynamic programming, that is not the focus of these practice problems. The solution explanations do not provide optimization strategies such as dynamic programming as the intent is to teach recursion in programming, not the nature of optimizing recursion.
 
-That said, for some problems, there will be an extra portion of the explanation which explains how to modify the solution to improve runtime efficiency.
+That said, for some problems, there will be a portion of the problem statement which lists a required asymptotic runtime. This is optional, especially if the user is new to optimization. There will also be an extra portion of the explanation which explains how to modify the solution to improve runtime efficiency, via dynamic programming or otherwise.
