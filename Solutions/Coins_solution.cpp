@@ -19,10 +19,10 @@ int minCoins(std::vector<int> denoms, int n) {
         if (n < denoms[i]) break;
         // If recursive call returns -1, we make it INT_MAX to ensure that curr_min
         // does not become -1
-        int x = minCoins(denoms, n - denoms[i]);
-        if (x == -1) x = INT_MAX;
+        int x = 1 + minCoins(denoms, n - denoms[i]);
+        if (!x) x = INT_MAX;
         // Updating minimum number of coins used
-        curr_min = std::min(curr_min, 1 + x);
+        curr_min = std::min(curr_min, x);
     }
     // If curr_min == INT_MAX, there were no successful finds, thus we return -1
     if (curr_min == INT_MAX) return -1;
