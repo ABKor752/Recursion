@@ -58,14 +58,14 @@ with denomination 8, then recurse upon that with 2 (i.e. `minCoins(arr, 24 - 8 -
 Currently, the runtime is exponential because of these multiple recursive calls. However,
 we can improve the efficiency by storing the results to subproblems in a memo table.
 
-Define an n by m array `memo[1...n][1...m]`, which when called initially,
-is filled with the value -2. Any time we figure out the result to `minCoins(arr[1...i], j)`,
-we set `memo[i][j]` to that result. Then, if we ever call `minCoins(arr[1...i], j)` again,
+Define an array `memo[1...n]`, which when called initially,
+is filled with the value -2. Any time we figure out the result to `minCoins(arr[1...m], i)`,
+we set `memo[i]` to that result. Then, if we ever call `minCoins(arr[1...m], i)` again,
 we simply return that result. The revised algorithm looks like this:
 
 ```
-minCoins(arr[1...m], n, memo[][]):
-   if memo[m][n] is not -2 then return memo[m][n]
+minCoins(arr[1...m], n, memo[]):
+   if memo[n] is not -2 then return memo[n]
    if n == 0 then return 0
    current_min = INT_MAX (maximum possible integer)
    for each denomination in arr do:
@@ -73,9 +73,9 @@ minCoins(arr[1...m], n, memo[][]):
       value = 1 + minCoins(arr, n - denomination)
       if value == 0 then value = INT_MAX (recursive call returned -1, so do not consider it)
       current_min = min{current_min, x}
-   if current_min == INT_MAX then memo[m][n] = -1 (no proper minimum number of coins found)
-   else memo[m][n] = current_min
-   return memo[m][n]
+   if current_min == INT_MAX then memo[n] = -1 (no proper minimum number of coins found)
+   else memo[n] = current_min
+   return memo[n]
 ```
 
 For any given n, `minCoins` will have its main implementation (everything after the first line)
